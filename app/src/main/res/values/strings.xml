@@ -49,7 +49,7 @@
     <string name="titleMethod">Detection Method</string>
     <string name="summaryMethod">Detection based on Company IDs in BLE advertising frames and device name matching.</string>
     <string name="titleLiability">Liability and License</string>
-    <string name="summaryLiability" formatted="false">"<![CDATA[
+    <string name="summaryLiability" formatted="false"><![CDATA[
          The app <i>Nearby Glasses</i> has one sole purpose: look for smart glasses nearby and warn you.<br/>
          The app’s author (<a href="https://yves.app">Yves Jeanrenaud</a>) takes no liability whatsoever for this app, nor it’s functionality. Use at your own risk. By technical design, detecting Bluetooth LE devices might sometimes just not work as expected. I am no graduated developer. This is all written in my free time and with knowledge I taught myself.<br/>
          <b>False positives are likely.</b> This means, the app <i>Nearby Glasses</i> may notify you of smart glasses nearby when there might be in fact a VR headset of the same manufacturer or another product of that company’s breed. It may also miss smart glasses nearby. To see which brands are currently detected, please refer to the <a href="https://github.com/yjeanrenaud/yj_nearbyglasses/">code repository on GitHub</a>. Again: I am no pro developer.<br/>
@@ -81,15 +81,10 @@
             Copyright The Android Open Source Project<br/>
             Licensed under the Apache License, Version 2.0<br/>
          <a href="https://github.com/androidx/androidx">https://github.com/androidx/androidx</a><br/>
+		 Contributors beyond GitHub: Lena Radau, @vfrmedia@social.tchncs.de, @mewsleah@meow.social, Sarah-Jane B.<br/>
+		 <br/>
          <br/>
-         A copy of the Apache License 2.0 is available under <a href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a><br/>
-         <br/>
-         3. The CLA is licensed under Creative Commons Attribution 3.0 Unported License.<br/>
-            by Harmony Agreements <a href="https://www.harmonyagreements.org/agreements">http://www.apache.org/licenses/LICENSE-2.0</a><br/>
-         <br/>
-         A copy of the Creative Commons Attribution 3.0 Unported License is available under <a href="https://creativecommons.org/licenses/by/3.0/">https://creativecommons.org/licenses/by/3.0/</a><br/>
-         <br/>
-         ✊🏼 resist (Ai)<br/><br/><br/>]]>     "</string>
+         ✊🏼 resist (Ai)<br/><br/><br/>]]></string>
     <string name="pref_language_title">Language</string>
     <string name="pref_language_summary">Choose the app language</string>
 
@@ -99,6 +94,7 @@
         <item>German</item>
         <item>Swiss German</item>
         <item>French</item>
+        <item>Spanish</item>
     </string-array>
     <string-array name="pref_language_values">
         <item></item> <!-- empty string means “follow system” -->
@@ -106,6 +102,7 @@
         <item>de</item>
         <item>de-CH</item>
         <item>fr</item>
+        <item>es</item>
     </string-array>
     <!-- for notifications -->
     <string name="notifyText">⚠️ Smart Glasses are maybe nearby</string>
@@ -124,8 +121,8 @@ Device: %1$s
 RSSI: %2$d dBm
 Reason: %3$s
 Company: %4$s
-⚠️ WARNING! HARASSING someone because you think they are wearing a covert surveillance device can be a criminal offence. It may even be a more serious offence than using such a device.
-⚠️ DO NOT HARASS ANYONE AT ALL.⚠️  ]]></string>
+WARNING! HARASSING someone because you think they are wearing a covert surveillance device can be a criminal offence. It may even be a more serious offence than using such a device.
+DO NOT HARASS ANYONE AT ALL.]]></string>
     <string name="notification_unknown_device">Unknown device</string>
 
     <!-- Foreground service notification -->
