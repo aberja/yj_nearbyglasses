@@ -118,7 +118,7 @@ RSSI drops roughly according to<br/>
 - Now the app icon's background is not transparent anymore
 - The edge-to-edge layout issue should be fixed with [v1.0.4](https://github.com/yjeanrenaud/yj_nearbyglasses/releases)
 - Newly licensed under AGPL 3.0
-- I descided to waive the CLA. After some discussions with people who knew more than me about collaborative projects, I gained the insight that this was an unneccessary step.
+- I decided to waive the CLA. After some discussions with people who knew more than me about collaborative projects, I gained the insight that this was an unnecessary step.
 
 ## Usage
 
