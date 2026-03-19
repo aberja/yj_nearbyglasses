@@ -8,14 +8,14 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="red_200">#FFF8A39B</color>
-    <color name="red_500">#FFF44336</color>
-    <color name="red_700">#FFD32F2F</color>
+    <color name="red_200">#FFDAD6D5</color>
+    <color name="red_500">#FFFFB4A9</color>
+    <color name="red_700">#FFF44336</color>
     
-    <color name="surface">#FFFFFBFE</color>
-    <color name="surface_variant">#FFE7E0EC</color>
-    <color name="on_surface">#FF1C1B1F</color>
-    <color name="on_surface_variant">#FF49454F</color>
-    <color name="background">#FFFFFBFE</color>
-    <color name="on_background">#FF1C1B1F</color>
+    <color name="surface">#FF1C1B1F</color>
+    <color name="surface_variant">#FF49454F</color>
+    <color name="on_surface">#FFE6E1E5</color>
+    <color name="on_surface_variant">#FFCAC4D0</color>
+    <color name="background">#FF1C1B1F</color>
+    <color name="on_background">#FFE6E1E5</color>
 </resources>
