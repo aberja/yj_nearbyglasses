@@ -7,26 +7,29 @@
     <string name="startScanning">Scanne schtarte</string>
     <string name="stopScanning">Scanne schtoppe</string>
     <string name="notScanning">Scannt nid</string>
+    <string name="notScanningCanary">Scannt nid</string>
     <string name="textScanning">Scannen aktiv - E Binochrichtigung zeigt a, wenn Smart Glasses in dr Neechei gfunde wärde.</string>
+    <string name="textScanningCanary">Scannen aktiv 𓅪 </string>
     <string name="titleCategoryAbout">Iber</string>
     <string name="start_scanning">Scanne schtarte</string>
     <string name="stop_scanning">Scannen schtoppe</string>
     <string name="scanning">Scanne nach Grät...</string>
-    <string name="not_scanning">Scannt nid</string>
+    <string name="not_scanning">Scannt nid<br/></string>
     <string name="clear">Lösche</string>
     <string name="export">Exportiere</string>
     <string name="clearLog">Protokoll löschen</string>
     <string name="exportLog">Protokoll exportiere</string>
     <string name="debug_log">Debug Protokoll</string>
     <string name="glasses_detected">👓 Warnig: Smart Glasses sind vermuetlig in dr Neechi</string>
-    <string name="info_text">Die App binochrichtigt dich, wenn sich Smart Glasses in dr Neechi befinde. Si binutzt drzue d Firmekennig in de vo dene Brille vrsändete Bluetooth-Date. Doorum chas zu Fählalarme ko (z. B. durch VR-Headsets). Siget Si dorum bitte voorsichtig, wenn Si sich enere Person nöchere, wo e Brille treit. Es chönt sich trotz dr Warnig vo dere App umene normali Brille handle.</string>
+    <string name="info_text">Die App binochrichtigt dich, wenn sich Smart Glasses in dr Neechi befinde. Si binutzt drzue d Firmekennig in de vo dene Brille vrsändete Bluetooth-Date. Doorum chas zu Fählalarme ko (z. B. durch VR-Headsets). Sig dorum bitte voorsichtig, wenn Si sich enere Person neechere, wo e Brille treit. Es chönt sich trotz dr Warnig vo dere App umene normali Brille handle.</string>
+    <string name="info_textCanary">De Kanarievogel zeigt a, wenn sich möglicherwis Smart Glasses in der Neechi befinde. Er suecht nach Bluetooth-Signal. Es cha zu  Fehlalarm ko (z. B. durch VR-Headsets). Siged drum bitte voorsichtig, wenn dir eich enere Person neecherisch, wo e Brille treit. Es chönt sich umene normali Brille handle.</string>
     <string name="warning_title">⚠️ WARNIG! ⚠️ </string>
     <string name="warning_text">ÖBBERT Z BELÄSCHTIGE, will me glaubt, si würde es vrdeckts Überwachigsgrät benutze, cha e Stroftat darstelle. Es cha sogar e schwereri Stroftat si, als sones Grät z benutze. Bitte lossed Si sich zu de örtliche Gsetz zu diem Thema rechtlich berote.\n⚠️ BELÄSCHTIGE SIE NIEMERTS - NIE ⚠️ </string>
     <string name="titleCategoryScanningSettings">Scan-Instellunge</string>
     <string name="titleForeground">Aktiviere Vordergrunddienscht</string>
     <string name="summaryForeground">Fiert s Scanne als Vordergrunddienscht uus, zum z vrhinerde, as es vom Syschtem anghalte wird.</string>
-    <string name="titleCooldown">Binochrichtigungs-Cooldown (ms)</string>
-    <string name="summaryCooldown"> Derzyt: %1$s ms. Mindeschtzyt zwüsche Benochrichtigunge in Millisekunde (Standard: 10000 ms = 10 s)</string>
+    <string name="titleCooldown">Binochrichtigungs/Kanarievogel-Cooldown (ms)</string>
+    <string name="summaryCooldown"> Derzyt: %1$s ms. Mindeschtzyt zwüsche Benochrichtigunge/Kanarievogel-Wächsel in Millisekunde (Standard: 10000 ms = 10 s)</string>
     <string name="titleThreshold">RSSI-Schwellewärt (dBm)</string>
     <string name="summaryThreshold"> Derzyt: %1$s dBm. Numme Grät mit emne RSSI-Wärt über däm Schwellenwärt erkenne (Standard: -75 dBm, ~3–10 m)</string>
     <string name="titleCategoryNotifications">Binochrichtigungsinstellige</string>
@@ -189,4 +192,7 @@ Firma: %4$s]]></string>
     <string name="dbg_override_match">Debug überschrribe: Firme-ID %1$s stimme überi</string>
     <string name="dbg_placeholder_unknown">?</string>
     <string name="dbg_placeholder_none">keini</string>
+    <string name="titleCategoryMode">Modus</string>
+    <string name="summaryCanaryMode">Im Kanarievogel-Modus bikunsch du kei Syschtem-Binochrichtig sondern gsesch es Vögeli. Disse zeigt ah, dass sowit keini Smart Glasses ir Neechi gsichtet worde sind. Sobald sich e Smart-Brille in dr Neechi befindet, vrändert sich s Vögeli ditlig.</string>
+    <string name="titleCanaryMode">Kanarievogel-Modus</string>
 </resources>

@@ -7,12 +7,14 @@
     <string name="startScanning">Start Scanning</string>
     <string name="stopScanning">Stop Scanning</string>
     <string name="notScanning">Not scanning</string>
+    <string name="notScanningCanary">Not scanning</string>
     <string name="textScanning">Scanning active - You will be notified if smart glasses are detected nearby</string>
+    <string name="textScanningCanary">Scanning active 𓅪 </string>
     <string name="titleCategoryAbout">About</string>
     <string name="start_scanning">Start Scanning</string>
     <string name="stop_scanning">Stop Scanning</string>
     <string name="scanning">Scanning for devices…</string>
-    <string name="not_scanning">Not scanning</string>
+    <string name="not_scanning">Not scanning<br/></string>
     <string name="clear">Clear</string>
     <string name="export">Export</string>
     <string name="clearLog">Clear Log</string>
@@ -20,13 +22,14 @@
     <string name="debug_log">Debug Log</string>
     <string name="glasses_detected">👓 Warning: smart glasses are maybe nearby</string>
     <string name="info_text">This app notifies you when smart glasses might be nearby. It uses company identificators in the Bluetooth data sent out by these. Therefore, there likely are false positives (e.g. from VR headsets). Hence, please proceed with caution when approaching a person nearby wearing glasses. They might just be regular glasses, despite this app’s warning.</string>
+    <string name="info_textCanary">This canary shows you when smart glasses might be nearby. It looks for Bluetooth identificators. False positives are likely (e.g. from VR headsets). Hence, please proceed with caution when approaching a person nearby wearing glasses. They might just be regular glasses.</string>
     <string name="warning_title">⚠️ WARNING! ⚠️ </string>
     <string name="warning_text">HARASSING someone because you think they are wearing a covert surveillance device can be a criminal offence. It may even be a more serious offence than using such a device. Please seek legal advise regarding your local laws on this matter.\n⚠️ DO NOT HARASS ANYONE AT ALL.⚠️  </string>
     <string name="titleCategoryScanningSettings">Scanning Settings</string>
     <string name="titleForeground">Enable Foreground Service</string>
     <string name="summaryForeground">Run scanning as a foreground service to prevent being stopped by the system.</string>
-    <string name="titleCooldown">Notification Cooldown (ms)</string>
-    <string name="summaryCooldown">Currently: %1$s ms. Minimum time between notifications in milliseconds (default: 10000ms = 10s)</string>
+    <string name="titleCooldown">Notification/Canary Cooldown (ms)</string>
+    <string name="summaryCooldown">Currently: %1$s ms. Minimum time between notifications or Canary changes in milliseconds (default: 10000ms = 10s)</string>
     <string name="titleThreshold">RSSI Threshold (dBm)</string>
     <string name="summaryThreshold">Currently: %1$s dBm. Only detect devices with RSSI above this threshold (default: -75 dBm, ~3-10 m)</string>
     <string name="titleCategoryNotifications">Notification Settings</string>
@@ -196,4 +199,8 @@ DO NOT HARASS ANYONE AT ALL.]]></string>
     <string name="dbg_override_match">Debug override: Company ID %1$s matched</string>
     <string name="dbg_placeholder_unknown">?</string>
     <string name="dbg_placeholder_none">none</string>
+    <string name="titleCategoryMode">Mode</string>
+    <string name="summaryCanaryMode">In Canary Mode you will not get system notifications, but you see a bird that signifies no smart glasses have been spotted nearby so far. In case of smart glasses nearby, the bird will change noticeably.</string>
+    <string name="titleCanaryMode">Canary Mode</string>
+
 </resources>

@@ -7,12 +7,14 @@
     <string name="startScanning">Scannen starten</string>
     <string name="stopScanning">Scannen stoppen</string>
     <string name="notScanning">Scannt nicht</string>
+    <string name="notScanningCanary">Scannt nicht</string>
     <string name="textScanning">Scannen aktiv - Eine Benachrichtigung zeigt an, wenn Smart Glasses in der Nähe gefunden werden</string>
+    <string name="textScanningCanary">Scannen aktiv 𓅪 </string>
     <string name="titleCategoryAbout">Über</string>
     <string name="start_scanning">Scannen starten</string>
     <string name="stop_scanning">Scannen stoppen</string>
     <string name="scanning">Scanne nach Geräten...</string>
-    <string name="not_scanning">Scanne nicht</string>
+    <string name="not_scanning">Scanne nicht<br/></string>
     <string name="clear">Löschen</string>
     <string name="export">Exportieren</string>
     <string name="clearLog">Protokoll löschen</string>
@@ -20,13 +22,14 @@
     <string name="debug_log">Debug Protokoll</string>
     <string name="glasses_detected">👓 Warnung: Smart Glasses sind vermutlich in der Nähe</string>
     <string name="info_text">Diese App benachrichtigt, wenn sich Smart Glasses in der Nähe befinden. Sie nutzt dazu die Unternehmenskennungen in den von diesen Brillen gesendeten Bluetooth-Daten. Daher kann es zu Fehlalarmen kommen (z. B. durch VR-Headsets). Seien Sie daher bitte vorsichtig, wenn Sie sich einer Person nähern, die eine Brille trägt. Es könnte sich trotz der Warnung dieser App um eine normale Brille handeln.</string>
+    <string name="info_textCanary">Dieser Kanarienvogel zeigt an, wenn sich möglicherweise Smart Glasses in der Nähe befindet. Er sucht nach Bluetooth-Identifikatoren. Es kann zu Fehlalarmen kommen (z. B. durch VR-Headsets). Seien Sie daher bitte vorsichtig, wenn Sie sich einer Person nähern, die eine Brille trägt. Es könnte sich um eine normale Brille handeln.</string>
     <string name="warning_title">⚠️ WARNUNG! ⚠️ </string>
     <string name="warning_text">JEMANDEN ZU BEDRÄNGEN, weil man glaubt, sie würden ein verdecktes Überwachungsgerät tragen, kann eine Strafttat darstellen. Es kann sogar eine schwerer sein, als solch ein Gerät zu benutzen. Bitte lassen Sie sich bezüglich der örtlichen Gesetze zu diesem Thema rechtlich beraten.\n⚠️ BELÄSTIGEN SIE NIEMANDEN - NIE ⚠️ </string>
     <string name="titleCategoryScanningSettings">Scan-Einstellungen</string>
     <string name="titleForeground">Aktiviere Vordergrunddienst</string>
     <string name="summaryForeground">Führt das Scannen als Vordergrunddienst aus, um zu verhindern, dass es vom System angehalten wird.</string>
-    <string name="titleCooldown">Benachrichtigungs-Cooldown (ms)</string>
-    <string name="summaryCooldown">Derzeit: %1$s ms. Mindestzeit zwischen Benachrichtigungen in Millisekunden (Standard: 10000 ms = 10 s)</string>
+    <string name="titleCooldown">Benachrichtigungs-/Kanarienvogel-Cooldown (ms)</string>
+    <string name="summaryCooldown">Derzeit: %1$s ms. Mindestzeit zwischen Benachrichtigungen/Kanarienvogel-Wechsel in Millisekunden (Standard: 10000 ms = 10 s)</string>
     <string name="titleThreshold">RSSI-Schwellenwert (dBm)</string>
     <string name="summaryThreshold">Derzeit: %1$s dBm. Nur Geräte mit einem RSSI-Wert über diesem Schwellenwert erkennen (Standard: -75 dBm, ~3–10 m)</string>
     <string name="titleCategoryNotifications">Benachrichtigungseinstellungen</string>
@@ -188,4 +191,7 @@ Firma: %4$s]]></string>
     <string name="dbg_override_match">Debug überschrieben: Unternehmens-ID %1$s übereinstimmend</string>
     <string name="dbg_placeholder_unknown">?</string>
     <string name="dbg_placeholder_none">keine</string>
+    <string name="titleCategoryMode">Modus</string>
+    <string name="summaryCanaryMode">Im Kanarienvogel-Modus erhältst du keine Systembenachrichtigung, sondern siehst einen Vogel, der anzeigt, dass bisher keine Smart-Brille in der Nähe gesichtet wurde. Sobald sich eine Smart-Brille in der Nähe befindet, verändert sich der Vogel deutlich.</string>
+    <string name="titleCanaryMode">Kanarienvogel-Modus</string>
 </resources>

@@ -30,8 +30,13 @@ class PreferencesManager(context: Context) {
         private const val DEFAULT_DEBUG_ENABLED = false
         private const val DEFAULT_DEBUG_MAX_LINES = 200
         private const val DEFAULT_DEBUG_ADVONLY = true
+        private const val KEY_CANARY_MODE = "canary_mode"
+        private const val DEFAULT_CANARY_MODE = true
     }
-    
+
+    var canaryModeEnabled: Boolean
+        get() = prefs.getBoolean(KEY_CANARY_MODE, DEFAULT_CANARY_MODE)
+        set(value) = prefs.edit().putBoolean(KEY_CANARY_MODE, value).apply()
     var rssiThreshold: Int
         //get() = prefs.getInt(KEY_RSSI_THRESHOLD, DEFAULT_RSSI_THRESHOLD)
         get() {
@@ -40,7 +45,8 @@ class PreferencesManager(context: Context) {
             return raw.toIntOrNull() ?: DEFAULT_RSSI_THRESHOLD
         }
         set(value) = prefs.edit().putInt(KEY_RSSI_THRESHOLD, value).apply()
-    
+
+    //getters
     var cooldownMs: Long
         //get() = prefs.getLong(KEY_COOLDOWN_MS, DEFAULT_COOLDOWN_MS)
         get() {
@@ -59,20 +65,20 @@ class PreferencesManager(context: Context) {
         set(value) = prefs.edit().putBoolean(KEY_FOREGROUND_SERVICE, value).apply()
     
     var notificationsEnabled: Boolean
-        get() = prefs.getBoolean(KEY_ENABLE_NOTIFICATIONS, DEFAULT_NOTIFICATIONS)
+        get() = !canaryModeEnabled && prefs.getBoolean(KEY_ENABLE_NOTIFICATIONS, DEFAULT_NOTIFICATIONS)
         set(value) = prefs.edit().putBoolean(KEY_ENABLE_NOTIFICATIONS, value).apply()
-    
+
     var loggingEnabled: Boolean
-        get() = prefs.getBoolean(KEY_LOGGING_ENABLED, DEFAULT_LOGGING_ENABLED)
+        get() = !canaryModeEnabled && prefs.getBoolean(KEY_LOGGING_ENABLED, DEFAULT_LOGGING_ENABLED)
         set(value) = prefs.edit().putBoolean(KEY_LOGGING_ENABLED, value).apply()
 
+    var debugEnabled: Boolean
+        get() = !canaryModeEnabled && prefs.getBoolean(KEY_DEBUG_ENABLED, DEFAULT_DEBUG_ENABLED)
+        set(value) = prefs.edit().putBoolean(KEY_DEBUG_ENABLED, value).apply()
+    
     var debugAdvOnly: Boolean
         get() = prefs.getBoolean(KEY_DEBUG_ADVONLY, DEFAULT_DEBUG_ADVONLY)
         set(value) = prefs.edit().putBoolean(KEY_DEBUG_ADVONLY, value).apply()
-
-    var debugEnabled: Boolean
-        get() = prefs.getBoolean(KEY_DEBUG_ENABLED, DEFAULT_DEBUG_ENABLED)
-        set(value) = prefs.edit().putBoolean(KEY_DEBUG_ENABLED, value).apply()
 
     val debugMaxLines: Int
         get() {

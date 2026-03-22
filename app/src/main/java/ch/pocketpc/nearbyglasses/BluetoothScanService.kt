@@ -110,6 +110,7 @@ class BluetoothScanService : Service() {
             onDebugLog = { msg ->
                 //Log.d(TAG, msg)          // still goes to Logcat
                 //emitDebug(msg)           // now also goes to UI
+                if (preferencesManager.canaryModeEnabled) return@BluetoothScanner
                 val advOnly = preferencesManager.debugAdvOnly
 
                 // Always send to UI (UI will filter too, but this reduces churn)

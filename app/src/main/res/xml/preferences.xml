@@ -31,7 +31,6 @@
             app:iconSpaceReserved="false"
             android:defaultValue="" />
     </PreferenceCategory>
-
     <PreferenceCategory
         android:title="@string/titleCategoryNotifications"
         app:iconSpaceReserved="false">
@@ -42,6 +41,13 @@
             android:summary="@string/summaryNotifications"
             android:title="@string/titleNotifications"
             app:iconSpaceReserved="false" />
+
+        <SwitchPreferenceCompat
+                android:defaultValue="true"
+                android:key="canary_mode"
+                android:summary="@string/summaryCanaryMode"
+                android:title="@string/titleCanaryMode"
+                app:iconSpaceReserved="false" />
 
         <EditTextPreference
             android:defaultValue="10000"

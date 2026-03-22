@@ -12,6 +12,7 @@ import androidx.preference.ListPreference
 import android.os.Handler
 import android.os.Looper
 import androidx.preference.PreferenceManager
+import androidx.preference.SwitchPreferenceCompat
 
 class SettingsActivity : AppCompatActivity() {
     
@@ -42,6 +43,11 @@ class SettingsActivity : AppCompatActivity() {
             val rssiPref = findPreference<EditTextPreference>("rssi_threshold")
             val debugIdsPref = findPreference<EditTextPreference>("debug_company_ids")
             val debugMaxLinesPref = findPreference<EditTextPreference>("debug_max_lines")
+            val canaryPref = findPreference<SwitchPreferenceCompat>("canary_mode")
+            val notificationsPref = findPreference<SwitchPreferenceCompat>("enable_notifications")
+            val loggingPref = findPreference<SwitchPreferenceCompat>("logging_enabled")
+            val debugPref = findPreference<SwitchPreferenceCompat>("debug_enabled")
+            val debugAdvOnlyPref = findPreference<SwitchPreferenceCompat>("debug_advonly")
 
             fun refreshSummaries() {
                 cooldownPref?.summary = getString(
@@ -63,6 +69,19 @@ class SettingsActivity : AppCompatActivity() {
                     //if (ids.isBlank()) "(none)" else ids
                     if (ids.isBlank()) getString(R.string.none_in_parentheses) else ids
                 )
+            }
+            fun refreshCanaryLocks(
+                canaryOn: Boolean = canaryPref?.isChecked == true,
+                debugOn: Boolean = debugPref?.isChecked == true
+            ) {
+                notificationsPref?.isEnabled = !canaryOn
+                loggingPref?.isEnabled = !canaryOn
+                debugPref?.isEnabled = !canaryOn
+
+                val enableDebugChildren = !canaryOn && debugOn
+                debugMaxLinesPref?.isEnabled = enableDebugChildren
+                debugAdvOnlyPref?.isEnabled = enableDebugChildren
+                debugIdsPref?.isEnabled = enableDebugChildren
             }
 
             // numeric input
@@ -89,6 +108,20 @@ class SettingsActivity : AppCompatActivity() {
             }
 
             // validation + live summary update
+            canaryPref?.setOnPreferenceChangeListener { _, newValue ->
+                Handler(Looper.getMainLooper()).post {
+                    refreshCanaryLocks(canaryOn = newValue as Boolean)
+                }
+                true
+            }
+
+            debugPref?.setOnPreferenceChangeListener { _, newValue ->
+                Handler(Looper.getMainLooper()).post {
+                    refreshCanaryLocks(debugOn = newValue as Boolean)
+                }
+                true
+            }
+
             cooldownPref?.setOnPreferenceChangeListener { pref, newValue ->
                 val s = (newValue as? String)?.trim().orEmpty()
                 val v = s.toLongOrNull()
@@ -155,6 +188,8 @@ class SettingsActivity : AppCompatActivity() {
 
             // set initial summaries
             refreshSummaries()
+            // set the locks for settings disabled by canary mode
+            refreshCanaryLocks()
         }
 
         private fun applyAppLanguage(tag: String) {

@@ -7,12 +7,14 @@
     <string name="startScanning">开始扫描</string>
     <string name="stopScanning">停止扫描</string>
     <string name="notScanning">扫描不活跃</string>
+    <string name="notScanningCanary">扫描不活跃</string>
     <string name="textScanning">扫描处于活跃状态—如果在附近检测到智能眼睛你会收到通知。</string>
+    <string name="textScanningCanary">扫描处于活跃状态— 𓅪 </string>
     <string name="titleCategoryAbout">关于</string>
     <string name="start_scanning">开始扫描</string>
     <string name="stop_scanning">停止扫描</string>
     <string name="scanning">正在扫描设备…</string>
-    <string name="not_scanning">扫描不活跃</string>
+    <string name="not_scanning">扫描不活跃<br/></string>
     <string name="clear">清除</string>
     <string name="export">导出</string>
     <string name="clearLog">清除日志</string>
@@ -20,13 +22,14 @@
     <string name="debug_log">调试日志</string>
     <string name="glasses_detected">👓 警告：附近可能有智能眼镜</string>
     <string name="info_text">本应用在附近可能有智能眼镜时通知您。 它使用智能眼镜所发送蓝牙数据中的公司标识符。因此可能有误报（比如，来自 VR 耳机）。因而，在靠近附近戴眼睛的人时请小心行事。虽然应用会示警，但也许这些眼镜并不智能。</string>
+    <string name="info_textCanary">This canary shows you when smart glasses might be nearby. It looks for Bluetooth identificators. False positives are likely (e.g. from VR headsets). Hence, please proceed with caution when approaching a person nearby wearing glasses. They might just be regular glasses.</string>
     <string name="warning_title">⚠️ 警告！⚠️ </string>
     <string name="warning_text">因为某人可能佩戴了隐蔽的监视设备而进行骚扰也许是刑事犯罪。这么做比起使用这样的设备可能更加严重。就此问题请寻求所在地的法律咨询。\n⚠️ 别骚扰任何人⚠️  </string>
     <string name="titleCategoryScanningSettings">扫描设置</string>
     <string name="titleForeground">启用前台服务</string>
     <string name="summaryForeground">以前台服务形式运行扫描防止扫描被系统停止</string>
-    <string name="titleCooldown">通知间隔 （毫秒）</string>
-    <string name="summaryCooldown">当前： %1$s 毫秒。通知相隔的最短时间。（默认： 10000毫秒 = 10秒）</string>
+    <string name="titleCooldown">Notification/Canary Cooldown (ms)</string>
+    <string name="summaryCooldown">Currently: %1$s ms. Minimum time between notifications or Canary changes in milliseconds (default: 10000ms = 10s)</string>
     <string name="titleThreshold">RSSI 阈值 (dBm)</string>
     <string name="summaryThreshold">目前：%1$s dBm。只检测 RSSI 高于该阈值的设备。 (默认： -75 dBm, ~3-10 m)</string>
     <string name="titleCategoryNotifications">通知设置</string>
@@ -99,6 +102,7 @@
         <item>德语</item>
         <item>瑞士德语</item>
         <item>法语</item>
+        <item>Spnish</item>
         <item>中文</item>
     </string-array>
     <string-array name="pref_language_values">
@@ -107,6 +111,7 @@
         <item>de</item>
         <item>de-CH</item>
         <item>fr</item>
+        <item>es</item>
         <item>zh</item>
     </string-array>
     <!-- for notifications -->
@@ -199,4 +204,7 @@ RSSI：%2$d dBm
     <string name="dbg_override_match">调试绕过： 匹配了公司 ID %1$s</string>
     <string name="dbg_placeholder_unknown">?</string>
     <string name="dbg_placeholder_none">无</string>
+    <string name="titleCategoryMode">Mode</string>
+    <string name="summaryCanaryMode">In Canary Mode you will not get system notifications, but you see a bird that signifies no smart glasses have been spotted nearby so far. In case of smart glasses nearby, the bird will change noticeably.</string>
+    <string name="titleCanaryMode">Canary Mode</string>
 </resources>

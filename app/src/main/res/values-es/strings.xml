@@ -7,26 +7,29 @@
     <string name="startScanning">Iniciar escaneo</string>
     <string name="stopScanning">Detener escaneo</string>
     <string name="notScanning">No escanea</string>
+    <string name="notScanningCanary">No escanea</string>
     <string name="textScanning">Escaneo activo: se te notificará si se detectan gafas inteligentes cerca</string>
+    <string name="textScanningCanary">Escaneo activo 𓅪 </string>
     <string name="titleCategoryAbout">Acerca</string>
     <string name="start_scanning">Iniciar escaneo</string>
     <string name="stop_scanning">Detener escaneo</string>
     <string name="scanning">Buscando dispositivos…</string>
-    <string name="not_scanning">No escanea</string>
+    <string name="not_scanning">No escanea<br/></string>
     <string name="clear">Borrar</string>
     <string name="export">Exportar</string>
     <string name="clearLog">Borrar el registro</string>
     <string name="exportLog">Registro de exportaciones</string>
     <string name="debug_log">Registro de depuración</string>
     <string name="glasses_detected">👓 Precaución: es probable que haya gafas inteligentes cerca</string>
-    <string name="info_text">Esta aplicación te avisa cuando hay gafas inteligentes cerca. Utiliza identificadores de empresa en los datos Bluetooth que envían estas gafas. Por lo tanto, es posible que haya falsos positivos (por ejemplo, de cascos de realidad virtual). Por ello, ten cuidado al acercarte a una persona cercana que lleve gafas. Puede que solo sean gafas normales, a pesar de la advertencia de esta aplicación</string>
+    <string name="info_text">Esta aplicación te avisa cuando hay gafas inteligentes cerca. Utiliza identificadores de empresa en los datos Bluetooth que envían estas gafas. Por lo tanto, es posible que haya falsos positivos (por ejemplo, de cascos de realidad virtual). Por ello, ten cuidado al acercarte a una persona cercana que lleve gafas. Puede que solo sean gafas normales, a pesar de la advertencia de esta aplicación.</string>
+    <string name="info_textCanary">Este canario te avisa cuando puede haber unas gafas inteligentes cerca. Detecta identificadores Bluetooth. Es probable que se produzcan falsos positivos (por ejemplo, de cascos de realidad virtual).Por ello, ten cuidado al acercarte a una persona cercana que lleve gafas. Puede que solo sean gafas normales.</string>
     <string name="warning_title">⚠️¡ADVERTENCIA!⚠️ </string>
     <string name="warning_text">ACOSAR a alguien porque crees que lleva un dispositivo de vigilancia oculto puede constituir un delito penal. Incluso puede ser un delito más grave que el uso de dicho dispositivo. Consulta con un asesor legal las leyes locales vigentes en esta materia. ⚠️NO ACOSES A NADIE BAJO NINGÚN CONCEPTO⚠️</string>
     <string name="titleCategoryScanningSettings">Configuración de escaneo</string>
     <string name="titleForeground">Activar servicio en primer plano</string>
     <string name="summaryForeground">Ejecuta el escaneo como un servicio en primer plano para evitar que el sistema lo detenga.</string>
-    <string name="titleCooldown">Tiempo de espera de notificación (ms)</string>
-    <string name="summaryCooldown">Actualmente: %1$s ms. Tiempo mínimo entre notificaciones en milisegundos (predeterminado: 10000 ms = 10 s)</string>
+    <string name="titleCooldown">Tiempo de espera de notificación/Canario (ms)</string>
+    <string name="summaryCooldown">Actualmente: %1$s ms. Tiempo mínimo entre notificaciones/cambios en la Canario en milisegundos (predeterminado: 10000 ms = 10 s)</string>
     <string name="titleThreshold">Umbral RSSI (dBm)</string>
     <string name="summaryThreshold">Actualmente: %1$s dBm. Solo detecta dispositivos con RSSI por encima de este umbral (predeterminado: -75 dBm, ~3-10 m)</string>
     <string name="titleCategoryNotifications">Configuración de notificaciones</string>
@@ -193,4 +196,7 @@ Empresa: %4$s
     <string name="dbg_override_match">Anulación de depuración: ID de empresa %1$s coincidente</string>
     <string name="dbg_placeholder_unknown">?</string>
     <string name="dbg_placeholder_none">ninguno</string>
+    <string name="titleCategoryMode">Modo</string>
+    <string name="summaryCanaryMode">En el modo Canario no recibirás notificaciones del sistema, pero verás un pájaro que indica que, hasta el momento, no se han detectado gafas inteligentes en las cercanías. Si hay gafas inteligentes cerca, el pájaro cambiará de forma notable.</string>
+    <string name="titleCanaryMode">Modo Canario</string>
 </resources>

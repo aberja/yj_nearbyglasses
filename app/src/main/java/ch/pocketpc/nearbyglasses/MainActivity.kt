@@ -45,6 +45,9 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.view.MotionEvent
 import kotlin.math.abs
+import android.view.View
+import android.os.Handler
+import android.os.Looper
 
 class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceChangeListener {
     
@@ -60,6 +63,123 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     private var scanService: BluetoothScanService? = null
     private var serviceBound = false
     private var startScanAfterBind = false
+    private var canaryDetected = false
+    private var canaryFlipped = false
+
+    private val mainHandler = Handler(Looper.getMainLooper())
+
+    private val canaryResetRunnable = Runnable {
+        canaryDetected = false
+        renderCanaryCanvas()
+    }
+
+    private val canaryFlipRunnable = object : Runnable {
+        override fun run() {
+            val isScanning = serviceBound && scanService?.isScanning() == true
+
+            if (!preferencesManager.canaryModeEnabled || !isScanning) {
+                canaryFlipped = false
+                binding.canaryCanvas.scaleX = 1f
+                return
+            }
+
+            canaryFlipped = !canaryFlipped
+            binding.canaryCanvas.scaleX = if (canaryFlipped) -1f else 1f
+
+            mainHandler.postDelayed(this, 3000L)
+        }
+    }
+
+    private fun renderCanaryCanvas() {
+        if (!preferencesManager.canaryModeEnabled) {
+            binding.canaryCanvas.setImageDrawable(null)
+            binding.logCard.setBackgroundResource(R.drawable.canary_canvas_bg)
+            return
+        }
+
+        val isScanning = serviceBound && scanService?.isScanning() == true
+
+        /*when {
+            !isScanning -> binding.canaryCanvas.setImageDrawable(null)
+            canaryDetected -> binding.canaryCanvas.setImageResource(R.drawable.canary_hide)
+            else -> binding.canaryCanvas.setImageResource(R.drawable.canary)
+        }*/
+        when {
+            !isScanning -> {
+                binding.canaryCanvas.setImageDrawable(null)
+                binding.logCard.setBackgroundResource(R.drawable.canary_canvas_bg)
+            }
+            canaryDetected -> {
+                binding.canaryCanvas.setImageResource(R.drawable.canary_hide)
+                binding.logCard.setBackgroundResource(R.drawable.canary_canvas_alert_bg)
+            }
+            else -> {
+                binding.canaryCanvas.setImageResource(R.drawable.canary)
+                binding.logCard.setBackgroundResource(R.drawable.canary_canvas_bg)
+            }
+        }
+        binding.canaryCanvas.scaleX = if (canaryFlipped) -1f else 1f
+    }
+
+    private fun scheduleCanaryReset() {
+        mainHandler.removeCallbacks(canaryResetRunnable)
+
+        if (
+            preferencesManager.canaryModeEnabled &&
+            serviceBound &&
+            scanService?.isScanning() == true
+        ) {
+            mainHandler.postDelayed(canaryResetRunnable, preferencesManager.cooldownMs)
+        }
+    }
+
+    private fun updateCanaryFlipLoop() {
+        mainHandler.removeCallbacks(canaryFlipRunnable)
+
+        val isScanning = serviceBound && scanService?.isScanning() == true
+        if (preferencesManager.canaryModeEnabled && isScanning) {
+            mainHandler.postDelayed(canaryFlipRunnable, 3000L)
+        } else {
+            canaryFlipped = false
+            binding.canaryCanvas.scaleX = 1f
+        }
+    }
+
+    private fun updateInfoTextPosition() {
+        val parent = binding.content
+        val info = binding.infoText
+        val lp = info.layoutParams
+
+        parent.removeView(info)
+
+        val insertIndex = if (preferencesManager.canaryModeEnabled) {
+            parent.indexOfChild(binding.logCard) + 1   // below canary/log card
+        } else {
+            parent.indexOfChild(binding.statusText) + 1 // above canary/log card
+        }
+
+        parent.addView(info, insertIndex, lp)
+    }
+
+    private fun updateModeTexts(isScanning: Boolean) {
+        if (preferencesManager.canaryModeEnabled) {
+            binding.statusText.text = if (isScanning) {
+                getString(R.string.textScanningCanary)
+            } else {
+                getString(R.string.notScanningCanary)
+            }
+
+            binding.infoText.text = getString(R.string.info_textCanary)
+        } else {
+            binding.statusText.text = if (isScanning) {
+                getString(R.string.textScanning)
+            } else {
+                getString(R.string.notScanning)
+            }
+
+            binding.infoText.text = getString(R.string.info_text)
+        }
+    }
 
     private val serviceConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
@@ -98,7 +218,13 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
 
     private val detectionListener: (DetectionEvent) -> Unit = { event ->
         runOnUiThread {
-            addLogEntry(event)
+            if (preferencesManager.canaryModeEnabled) {
+                canaryDetected = true
+                renderCanaryCanvas()
+                scheduleCanaryReset()
+            } else {
+                addLogEntry(event)
+            }
         }
     }
     
@@ -198,7 +324,9 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         setupEdgeToEdge()
         setupToolbar()
         setupUI()
+        updateUI()
         updateLogDisplay()
+        invalidateOptionsMenu()
     }
     
     private fun setupToolbar() {
@@ -316,6 +444,7 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     }
     private val debugListener: (String) -> Unit = { msg ->
         runOnUiThread {
+            if (preferencesManager.canaryModeEnabled) return@runOnUiThread
             if (!preferencesManager.debugEnabled) return@runOnUiThread
             if (preferencesManager.debugAdvOnly && !msg.startsWith("ADV ")) {
                 return@runOnUiThread
@@ -341,13 +470,37 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     }
 
     private fun updateLogDisplay() {
-        val show = preferencesManager.loggingEnabled || preferencesManager.debugEnabled
+        /*val show = preferencesManager.loggingEnabled || preferencesManager.debugEnabled
         if (show) {
             binding.textLog.isEnabled = true
             //binding.textLog.text = logTextBuffer.toString()
             binding.textLog.text = buildLogText()
 
             // Auto-scroll to bottom
+            binding.scrollView.post {
+                binding.scrollView.fullScroll(android.view.View.FOCUS_DOWN)
+            }
+        } else {
+            binding.textLog.isEnabled = false
+            binding.textLog.text = getString(R.string.notLogging)
+        }*/
+        if (preferencesManager.canaryModeEnabled) {
+            binding.debugTitle.visibility = View.GONE
+            binding.scrollView.visibility = View.GONE
+            binding.canaryCanvas.visibility = View.VISIBLE
+            binding.textLog.isEnabled = false
+            renderCanaryCanvas()
+            return
+        }
+        binding.debugTitle.visibility = View.VISIBLE
+        binding.scrollView.visibility = View.VISIBLE
+        binding.canaryCanvas.visibility = View.GONE
+
+        val show = preferencesManager.loggingEnabled || preferencesManager.debugEnabled
+        if (show) {
+            binding.textLog.isEnabled = true
+            binding.textLog.text = buildLogText()
+
             binding.scrollView.post {
                 binding.scrollView.fullScroll(android.view.View.FOCUS_DOWN)
             }
@@ -365,12 +518,22 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
         } else {
             getString(R.string.startScanning)
         }
-        
+        /*
         binding.statusText.text = if (isScanning) {
             getString(R.string.textScanning)
         } else {
             getString(R.string.notScanning)
-        }
+        }*/
+        updateModeTexts(isScanning)
+        updateInfoTextPosition()
+        binding.infoText.visibility =
+            if (preferencesManager.canaryModeEnabled && !isScanning) {
+                View.GONE
+            } else {
+                View.VISIBLE
+            }
+        renderCanaryCanvas()
+        updateCanaryFlipLoop()
     }
     
     private fun requestPermissionsAndScan() {
@@ -438,6 +601,11 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     }
     
     private fun startForegroundService() {
+        canaryDetected = false
+        mainHandler.removeCallbacks(canaryFlipRunnable)
+        canaryFlipped = false
+        binding.canaryCanvas.scaleX = 1f
+        mainHandler.removeCallbacks(canaryResetRunnable)
         val intent = Intent(this, BluetoothScanService::class.java).apply {
             action = BluetoothScanService.ACTION_START_SCAN
         }
@@ -458,6 +626,11 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     }
     
     private fun startInAppScanning() {
+        canaryDetected = false
+        mainHandler.removeCallbacks(canaryFlipRunnable)
+        canaryFlipped = false
+        binding.canaryCanvas.scaleX = 1f
+        mainHandler.removeCallbacks(canaryResetRunnable)
 //        val intent = Intent(this, BluetoothScanService::class.java)
 //        bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE)
         if (!serviceBound) {
@@ -471,6 +644,11 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     }
     
     private fun stopScanning() {
+        canaryDetected = false
+        mainHandler.removeCallbacks(canaryFlipRunnable)
+        canaryFlipped = false
+        binding.canaryCanvas.scaleX = 1f
+        mainHandler.removeCallbacks(canaryResetRunnable)
         if (serviceBound) {
             scanService?.let { service ->
                 if (preferencesManager.foregroundServiceEnabled) {
@@ -607,11 +785,37 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
             }
             "debug_advonly" -> updateLogDisplay()
             "debug_max_lines" -> updateLogDisplay()
+            "canary_mode" -> {
+                canaryDetected = false
+                mainHandler.removeCallbacks(canaryResetRunnable)
+
+                if (serviceBound) {
+                    scanService?.removeDebugListener(debugListener)
+                    if (preferencesManager.debugEnabled) {
+                        scanService?.addDebugListener(debugListener)
+                    }
+                }
+                mainHandler.removeCallbacks(canaryFlipRunnable)
+                canaryFlipped = false
+                binding.canaryCanvas.scaleX = 1f
+
+                invalidateOptionsMenu()
+                updateLogDisplay()
+                updateUI()
+            }
+            "cooldown_ms" -> {
+                if (preferencesManager.canaryModeEnabled && canaryDetected) {
+                    scheduleCanaryReset()
+                }
+            }
         }
     }
     
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
+        val canary = preferencesManager.canaryModeEnabled
+        menu.findItem(R.id.action_export)?.isVisible = !canary
+        menu.findItem(R.id.action_clear_log)?.isVisible = !canary
         return true
     }
     
@@ -636,6 +840,8 @@ class MainActivity : AppCompatActivity(), SharedPreferences.OnSharedPreferenceCh
     override fun onDestroy() {
         super.onDestroy()
         preferencesManager.unregisterListener(this)
+        mainHandler.removeCallbacks(canaryResetRunnable)
+        mainHandler.removeCallbacks(canaryFlipRunnable)
         if (serviceBound) {
             scanService?.removeDetectionListener(detectionListener)
             scanService?.removeDebugListener(debugListener)
