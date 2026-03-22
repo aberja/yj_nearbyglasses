@@ -6,6 +6,7 @@ attempting to detect smart glasses nearby and warn you.
 
 <img width="135" height="300" align ="right" alt="Screenshot Nearby Glasses classic" src="img/old/Screenshot%20Nearby%20Glasses%20(2).png" />
 <img width="135" height="300" align ="right" alt="Screenshot Nearby Glasses canary mode" src="img/Screenshot%20Nearby%20Glasses%20(2).png" />
+
 # ⚠ WARNING! ⚠ 
 **HARASSING someone because you think they are wearing a covert surveillance device can be a criminal offence. It may even be a more serious offence than using such a device. Please seek legal advise regarding your local laws on this matter.**
 ---
