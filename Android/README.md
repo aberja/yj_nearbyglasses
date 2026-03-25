@@ -16,7 +16,8 @@ attempting to detect smart glasses nearby and warn you.
 # Nearby Glasses 
 The app, called *Nearby Glasses*, has one sole purpose: Look for smart glasses nearby and warn you.
 
-<a href="https://play.google.com/store/apps/details?id=ch.pocketpc.nearbyglasses" target="_blank"><img width="239" height="71" alt="Get It On Google Play" src="https://github.com/user-attachments/assets/0feb46d1-969e-4f83-8fc7-c18d1bbed8ad" /></a> <a href="https://apt.izzysoft.de/packages/ch.pocketpc.nearbyglasses" taget="_blank"><img height="71" src="https://github.com/user-attachments/assets/9a711c51-6bce-43b3-af4f-4f198a94970f" alt="Get it at IzzyOnDroid" /></a> <a href="https://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/yjeanrenaud/yj_nearbyglasses/"><img width="239" height="71" alt="Get it on Obtainium" src="./img/Download_with_Obtainium.png"/></a>
+<a href="https://play.google.com/store/apps/details?id=ch.pocketpc.nearbyglasses" target="_blank"><img width="239" height="71" alt="Get It On Google Play" src="https://github.com/user-attachments/assets/0feb46d1-969e-4f83-8fc7-c18d1bbed8ad" /></a> <a href="https://apt.izzysoft.de/packages/ch.pocketpc.nearbyglasses" taget="_blank"><img height="71" src="https://github.com/user-attachments/assets/9a711c51-6bce-43b3-af4f-4f198a94970f" alt="Get it at IzzyOnDroid" /></a> <a href="https://apps.obtainium.imranr.dev/redirect.html?r=obtainium://add/https://github.com/yjeanrenaud/yj_nearbyglasses/"><img width="239" height="71" alt="Get it on Obtainium" src="./img/Download_with_Obtainium.png"/></a> <a href="https://apps.apple.com/us/app/nearby-glasses-original/id6761056896"><img width="213" height="71" alt="Download on the App Store" src="https://github.com/user-attachments/assets/c82c0c5b-c775-4754-8946-b76722c9e7cf" /></a>
+
 
 # Table of contents
  * [Nearby Glasses](#Nearby-Glasses)
@@ -126,8 +127,8 @@ RSSI drops roughly according to<br/>
 - Newly licensed under AGPL 3.0
 - I decided to waive the CLA. After some discussions with people who knew more than me about collaborative projects, I gained the insight that this was an unnecessary step.
 ## iOS and Android
-- Finally, after three weeks, the iOS port is available. [Source code and project files are provided](/iOS/), too. The code is ugly and unorthodox. Many approaches are quick and dirty (e.g. I re-use the json files from the android localisation), but it is working so far. The app has been pushed to the app Store and should be available soon. ipa is available for sideloading under [releases](https://github.com/yjeanrenaud/yj_nearbyglasses/releases).
-  The iOS App is not working in the background, because I found no possibility to use something similar to ForegroundServices in order to permanently scan for BTLE ADV due to iOS restrictions.
+- Finally, after three weeks, the iOS port is available. [Source code and project files are provided](/iOS/), too. The code is ugly and unorthodox. Many approaches are quick and dirty (e.g. I re-use the json files from the android localisation), but it is working so far. *Nearby Glasses* is availale via the [Apple App Store](https://apps.apple.com/us/app/nearby-glasses-original/id6761056896). (It's called original to make it distinguishable from those copycats). A .ipa is available for sideloading under [releases](https://github.com/yjeanrenaud/yj_nearbyglasses/releases).
+  The iOS App is not working in the background, because I found no possibility to use something similar to ForegroundServices in order to permanently scan for BTLE ADV due to iOS restrictions. Hence, there's only a Canary Mode available in *Nearby Glasses* under iOS.
 - Because this repository holds both Android and iOS App code, I re-organised the folders. Hence, there is [/iOS](/iOS/) and [/Android](/Android/).
 
 ## Usage
@@ -135,8 +136,8 @@ RSSI drops roughly according to<br/>
 - See [Releases](https://github.com/yjeanrenaud/yj_nearbyglasses/releases) for APK to download or use Google Play Store. F-Droid and/or Accrescent may follow.
 <img width="135" height="300" align ="right" alt="Screenshot Nearby Glasses: Settings" src="img/Screenshot%20Nearby%20Glasses%20(4).png" />
 
-<a href="https://play.google.com/store/apps/details?id=ch.pocketpc.nearbyglasses" target="_blank"><img width="239" height="71" alt="Get It On Google Play" src="https://github.com/user-attachments/assets/0feb46d1-969e-4f83-8fc7-c18d1bbed8ad" /></a>
-1. Install the app (from [Releases](https://github.com/yjeanrenaud/yj_nearbyglasses/releases) or from [Google Play](https://play.google.com/store/apps/details?id=ch.pocketpc.nearbyglasses), for now) and open it
+<a href="https://play.google.com/store/apps/details?id=ch.pocketpc.nearbyglasses" target="_blank"><img width="239" height="71" alt="Get It On Google Play" src="https://github.com/user-attachments/assets/0feb46d1-969e-4f83-8fc7-c18d1bbed8ad" /></a> <a href="https://apps.apple.com/us/app/nearby-glasses-original/id6761056896"><img width="213" height="71" alt="Download on the App Store" src="https://github.com/user-attachments/assets/c82c0c5b-c775-4754-8946-b76722c9e7cf" /></a>
+1. Install the app (from [Releases](https://github.com/yjeanrenaud/yj_nearbyglasses/releases) or from [Google Play](https://play.google.com/store/apps/details?id=ch.pocketpc.nearbyglasses), for now) or from [Apple App Store](https://apps.apple.com/us/app/nearby-glasses-original/id6761056896), and open it
 2. Hit the *Start Scanning* button
 3. Grant permissions to activate Bluetooth (if not already enabled) and to access devices nearby. Some versions of Android also need you to grant permissions to access your location (before Version 13, mostly). *Nearby Glasses* does nothing with your location info. If you don't believe me, please look at the [code](https://github.com/yjeanrenaud/yj_nearbyglasses/tree/main/app)
 4. if you don't see the scan starting, you might need to enable *Foreground Service* on your particular phone in the *Settings* menu (see below)
@@ -145,7 +146,7 @@ RSSI drops roughly according to<br/>
    1. *Enable Foreground Service*: By this, you prevent Android from pausing the app thus preventing it from alerting you. I recommend leaving this enabled
    2. *RSSI threshold*: This negative number specifies how far away a device might be to be a reason for an alert by *Nearby Glasses*. Technically, it referes to how strong the signal is received. Closer to zero means better signal, hence fewer distance between your phone and the smart glasses. See [RSSI above for explanations and guidance](#how). I recommend leaving it on -75
    3. *Enable Notifications*: You would not want to disable that 
-   4. Canary Mode. This is the new default. With this, you will not get system notifications altering you of smart glasses nearby, but instead you will see a canary that indicates no smart glasses around. <img src="img/canary.svg" alt="Drawing of a canary" width="100" height="100" alignt="left"> 
+   4. Canary Mode. This is the new default. With this, you will not get system notifications altering you of smart glasses nearby, but instead you will see a canary that indicates no smart glasses around. iOS app only has a canary mode due to technical constrains. <img src="img/canary.svg" alt="Drawing of a canary" width="100" height="100" alignt="left"> 
    5. *Notification/Canary Cooldown*: Here, you specify, how many notifications about found smart glasses nearby you want to get or how long the canary should hide. I chose 10 seconds (10000 ms) as default value. Like this, you won't miss the notification while at the same time won't be bothered by it too much or drain your battery too fast
    6. *Enable Log Display*: Disabling this might spare you some battery. This is disabled in canary mode.
    7. *Debug*: Is needed to see more than just the matching BLE frames in the log display frame. It's useful to see if things are working. This is disabled in canary mode.
@@ -167,7 +168,7 @@ RSSI drops roughly according to<br/>
 - I am no BT or Android expert at all. For what I've learned, one could also dig deeper into the communication of the smart glasses by sniffing the BLE traffic. By doing so, we would likely not need to rely on the device behaving according to the BT specifications but could also use heuristics on the encrypted traffic transmissions without much false positives. But I haven't looked into BT traffic packets for more than ten years. I'm glad I remembered ADV frames... So if anybody could help on this, that'd be greatly appreciated!
 ---
 - Add **more manufacturers IDs** of smart glasses. Right now, it's Meta, Oakley and Snap. A list of smart glasses with cameras available would help, too.
-- An **iOS app** might be possible, too. I have the toolchain now, but I will need a Mac to submit it to the Apple App Store in the end. And I need to dig deeper into iOS development-
+- as of March 24, 2026, the iOS version is available, too.
 - There **layout issue** with **Google Pixel devices** seems to be fixed as of Version 1.0.3. If you still can't reach the menu as it's mixed with the status bar somehow. Will look into that asap. Meanwhile, try to put your screen to landscape mode and rotate *clockwise (to the right)*. 
 
 ## Tech-Solutionism?
@@ -225,7 +226,9 @@ Please Note This app builds upon:
 - [@pojntfx](https://github.com/pojntfx) for pointing out my misunderstandings with licensing
 - [Sarah-Jane B.](https://www.linkedin.com/in/sarah-janeb/) for UX design tipps
 - Lena Radau for the translation to Spanish
-- All who already provided feedback to the app!
+- Marcel L. for feedback and testing the iOS app
+- Lena Hansen for field tests
+- Everyone else who already provided feedback to the app!
 
 ## License and Credits
 **App Icon**: The icon is based on [Eyeglass icons created by Freepik - Flaticon](https://www.flaticon.com/free-icons/eyeglass)<br/>
